@@ -13,4 +13,6 @@ Rails.application.routes.draw do
     resource :relationships, only: [:create, :destroy]
   end
   
+  get 'search' => 'searches#search'
+  
 end
