@@ -1,7 +1,7 @@
 class ChatsController < ApplicationController
-  
-    before_action :authenticate_user!
-    
+
+    before_action :follow_each_other, only: [:show]
+
   def show
     @user = User.find(params[:id])
     rooms = current_user.user_rooms.pluck(:room_id)
@@ -28,5 +28,12 @@ class ChatsController < ApplicationController
   private
   def chat_params
     params.require(:chat).permit(:message, :room_id)
+  end
+
+  def follow_each_other
+    user = User.find(params[:id])
+    unless current_user.following?(user) && user.following?(current_user)
+      redirect_to books_path
+    end
   end
 end
