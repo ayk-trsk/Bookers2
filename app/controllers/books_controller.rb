@@ -24,6 +24,9 @@ class BooksController < ApplicationController
     @user = @book.user
     @book_comment = BookComment.new
     @book_comments = @book.book_comments
+    unless ViewCount.find_by(user_id: current_user.id, book_id: @book.id)
+      current_user.view_counts.create(book_id: @book.id)
+    end
   end
 
   def edit
@@ -55,4 +58,5 @@ class BooksController < ApplicationController
   def book_params
     params.require(:book).permit(:title, :body)
   end
+
 end

@@ -14,6 +14,7 @@ class User < ApplicationRecord
   has_many :follower_user, through: :followed, source: :follower
   has_many :user_rooms, dependent: :destroy
   has_many :chats, dependent: :destroy
+  has_many :view_counts, dependent: :destroy
 
   attachment :profile_image
   validates :name, presence: true, uniqueness: true, length: { minimum: 2, maximum: 20 }
