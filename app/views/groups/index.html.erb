@@ -1,0 +1,40 @@
+<div class="container px-5 px-sm-0">
+  <% if @book.errors.any? %>
+    <div id ="error_explanation">
+      <h3><%= @book.errors.count %> error prohibited this book from being saved:</h3>
+      <ul>
+      <% @book.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="row">
+    <%= render 'books/side', user: @user %>
+    <div class="col-md-8 offset-md-1">
+      <h2>Groups</h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>グループ名</th>
+            <th>紹介文</th>
+            <th colspan="1"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @groups.each do |group| %>
+          <tr>
+            <td><%= attachment_image_tag group, :image, :fill, 40, 40, fallback: "no_image_icon.jpg" %></td>
+            <td><%= link_to group.name, group_path(group) %></td>
+            <td><%= group.introduction %></td>
+            <% if current_user.id == group.owner_id %>
+                <td><%= link_to "Edit", edit_group_path(group), class: "btn btn-sm btn-success" %></td>
+            <% end %>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
