@@ -46,6 +46,14 @@ class UsersController < ApplicationController
     render 'show_follower'
   end
 
+  def date_search
+    @user = User.find(params[:user_id])
+    @books = @user.books
+    @book = Book.new
+    create_at = params[:created_at]
+    @date_search_book = @books.where('created_at LIKE ?', "#{create_at}%").count
+  end
+
   private
   def user_params
     params.require(:user).permit(:name, :profile_image, :introduction)
