@@ -19,6 +19,7 @@
             <th></th>
             <th>グループ名</th>
             <th>紹介文</th>
+            <th>メンバー数</th>
             <th colspan="1"></th>
           </tr>
         </thead>
@@ -28,6 +29,7 @@
             <td><%= attachment_image_tag group, :image, :fill, 40, 40, fallback: "no_image_icon.jpg" %></td>
             <td><%= link_to group.name, group_path(group) %></td>
             <td><%= group.introduction %></td>
+            <td><%= group.users.count %></td>
             <% if current_user.id == group.owner_id %>
                 <td><%= link_to "Edit", edit_group_path(group), class: "btn btn-sm btn-success" %></td>
             <% end %>
