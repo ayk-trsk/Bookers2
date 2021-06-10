@@ -20,7 +20,7 @@
             <th>グループ名</th>
             <th>紹介文</th>
             <th>メンバー</th>
-            <th colspan="1"></th>
+            <th colspan="2"></th>
           </tr>
         </thead>
         <tbody>
@@ -35,10 +35,11 @@
             </td>
             <% if current_user.id == @group.owner_id %>
               <td><%= link_to "Edit", edit_group_path(@group), class: "btn btn-sm btn-success" %></td>
+              <td><%= link_to "Notice an Event", group_new_mail_path(@group), class: "btn btn-sm btn-info" %></td>
             <% elsif @group.users.include?(current_user) %>
               <td><%= link_to "Leave this group", group_path(@group), method: :delete, class: "btn btn-sm btn-danger" %></td>
             <% else %>
-              <td><%= link_to "Join this group", join_group_path(@group), class: "btn btn-sm btn-success" %></td>
+              <td><%= link_to "Join this group", group_join_path(@group), class: "btn btn-sm btn-success" %></td>
             <% end %>
           </tr>
         </tbody>
