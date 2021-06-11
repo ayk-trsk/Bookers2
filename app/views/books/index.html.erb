@@ -12,8 +12,9 @@
   <% end %>
   <div class="row">
     <%= render 'books/side', user: @user %>
-    <div class="col-md-8 offset-md-1">      
+    <div class="col-md-8 offset-md-1">
     <h2>Books</h2>
+      <%= link_to "新しい順", books_path(sort: 'created_at DESC') %> | <%= link_to "評価の高い順", books_path(sort: 'rate DESC') %>
       <%= render 'index', books: @books %>
     </di
   </div>

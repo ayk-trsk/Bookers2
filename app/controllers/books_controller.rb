@@ -2,7 +2,7 @@ class BooksController < ApplicationController
 
   def index
     @book = Book.new
-    @books = Book.all.sort{|a,b| b.favorited_users.where(created_at: 1.week.ago.beginning_of_day..Time.zone.now.end_of_day).count <=> a.favorited_users.where(created_at: 1.week.ago.beginning_of_day..Time.zone.now.end_of_day).count}
+    @books = Book.all.order(params[:sort])
     @user = current_user
   end
 
