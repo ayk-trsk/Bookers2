@@ -2,16 +2,7 @@
   <div class="row">
     <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
       <h1>Editing Group</h1>
-      <% if @group.errors.any? %>
-        <div id ="error_explanation">
-          <h3><%= @group.errors.count %> error prohibited this book from being saved:</h3>
-          <ul>
-          <% @group.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-          <% end %>
-          </ul>
-        </div>
-      <% end %>
+      <%= render 'layouts/errors', obj: @group %>
       <%= form_with model: @group, local:true do |f| %>
         <div class="form-group">
           <label>グループ名</label>
